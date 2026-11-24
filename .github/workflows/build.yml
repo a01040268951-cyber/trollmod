@@ -12,15 +12,6 @@ jobs:
           distribution: temurin
           java-version: 25
       - run: chmod +x gradlew && ./gradlew build
-      - name: dump api
-        if: always()
-        run: |
-          J=$(find ~/.gradle -name '*.jar' -path '*loom*' | grep -i minecraft | grep -v sources | head -20); echo "$J"
-          for j in $J; do
-            javap -cp "$j" net.minecraft.world.entity.Entity 2>/dev/null | grep -iE "invulner" && echo "^^ Entity in $j"
-            javap -cp "$j" net.minecraft.world.entity.player.Player 2>/dev/null | grep -iE "Message|overlay" && echo "^^ Player in $j"
-            javap -cp "$j" net.minecraft.server.level.ServerPlayer 2>/dev/null | grep -iE "Message|overlay|setRespawn" && echo "^^ ServerPlayer in $j"
-          done
       - uses: actions/upload-artifact@v4
         with:
           name: trollmod-jar

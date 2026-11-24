@@ -60,19 +60,13 @@ public abstract class ItemEntityMixin extends Entity {
 				&& (this.isInLava() || serverLevel.getFluidState(this.blockPosition()).is(FluidTags.LAVA));
 
 		if (!inLava) {
-			if (this.trollmod$shielded) {
-				this.setInvulnerable(false);
-				this.trollmod$shielded = false;
-			}
 			this.trollmod$lavaTicks = 0;
 			return;
 		}
 
-		if (!this.trollmod$shielded) {
-			this.setInvulnerable(true);
-			this.trollmod$shielded = true;
-		}
+		// 26.3 에는 Entity#setInvulnerable 이 없으므로, 틱마다 체력을 되돌려 용암 피해(틱당 1회)를 무효화한다
 		this.health = 5;
+		this.clearFire();
 
 		Component existing = stack.get(DataComponents.CUSTOM_NAME);
 		if (existing != null && TROLLMOD_REFINED_NAME.equals(existing.getString())) {

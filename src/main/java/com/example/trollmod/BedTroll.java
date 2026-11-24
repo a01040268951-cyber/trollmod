@@ -51,7 +51,7 @@ public final class BedTroll {
 		}
 
 		if (state.getValue(BedBlock.OCCUPIED)) {
-			sp.displayClientMessage(Component.translatable("block.minecraft.bed.occupied"), true);
+			sp.sendOverlayMessage(Component.translatable("block.minecraft.bed.occupied"));
 			return InteractionResult.SUCCESS;
 		}
 		if (sp.isSleeping()) {
