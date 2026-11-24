@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "id": "trollmod",
+  "version": "${version}",
+  "name": "Troll Mod",
+  "description": "Shorts troll mod: nether/end beds, staring creepers, refined diamonds.",
+  "authors": [
+    "Ssaem"
+  ],
+  "license": "All-Rights-Reserved",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.example.trollmod.TrollMod"
+    ]
+  },
+  "mixins": [
+    "trollmod.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.19.5",
+    "minecraft": "~26.3",
+    "java": ">=25",
+    "fabric-api": "*"
+  },
+  "icon": "assets/trollmod/icon.png",
+  "contact": {
+    "homepage": "https://modrinth.com/mod/trollmod"
+  }
+}
